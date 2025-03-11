@@ -11,6 +11,7 @@ func Build(s *mhttp.Server) {
 
 	hello := controller.NewHelloController()
 
-	g := s.Group("api/v1")
-	g.Bind(hello)
+	s.Group("api/v1", func(rg *mhttp.RouterGroup) {
+		rg.BindObject(hello)
+	})
 }
