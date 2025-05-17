@@ -15,3 +15,14 @@ logger:
   path: ./logs/dev.log
   format: json
   time_format: "2006-01-02 15:04:05"
+
+database:
+  type: mysql
+  db_name: test
+  logger:
+    level: debug
+    path: ./logs/dev.log
+
+mse:
+  mseDataId: "d_fino_consume_w"
+  mseGroup: "db"

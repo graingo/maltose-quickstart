@@ -1,7 +1,7 @@
 package route
 
 import (
-	"github.com/graingo/maltose-quickstart/controller"
+	"github.com/graingo/maltose-quickstart/internal/controller"
 	"github.com/graingo/maltose/net/mhttp"
 )
 
