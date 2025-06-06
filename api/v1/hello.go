@@ -20,3 +20,19 @@ type ByeReq struct {
 type ByeRes struct {
 	Name string `json:"name" dc:"姓名"`
 }
+
+type PingReq struct{}
+
+type PingRes struct{}
+
+type BReq struct{}
+
+type BRes struct{}
+
+type CReq struct{}
+
+type CRes struct{}
+
+type EReq struct{}
+
+type ERes struct{}
