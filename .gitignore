@@ -17,6 +17,7 @@ temp/
 example/log
 go.work
 go.work.sum
+.env
 !cmd/gf/go.work
 .windsurfrules
 
