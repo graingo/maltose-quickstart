@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by Maltose tool. DO NOT EDIT.
+// Code generated and maintained by Maltose tool. You can edit this file as you like.
 // =================================================================================
 package service
 
@@ -11,7 +11,7 @@ import (
 
 type IHello interface {
 	// TODO: Define your service interface methods here.
-	Hello(context.Context, model.HelloInput) (model.HelloOutput, error)
+	Hello(context.Context, *model.HelloInput) (*model.HelloOutput, error)
 }
 
 var localHello IHello

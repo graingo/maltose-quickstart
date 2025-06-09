@@ -1,28 +1,21 @@
 // =================================================================================
 // Code generated and maintained by Maltose tool. You can edit this file as you like.
 // =================================================================================
-package v1
+package hello
 
 import (
 	"context"
-	"github.com/graingo/maltose-quickstart/api/v1"
+	"github.com/graingo/maltose-quickstart/api/hello/v1"
 )
 
-type cA struct{}
-
-// NewA creates a new controller.
-func NewA() *cA {
-	return &cA{}
-}
-
-// A is the handler for the A API.
-func (c *cA) A(ctx context.Context, req *v1.AReq) (res *v1.ARes, err error) {
+// Hello is the handler for the Hello API.
+func (c *HelloV1) Hello(ctx context.Context, req *v1.HelloReq) (res *v1.HelloRes, err error) {
 	// TODO: Implement the business logic here.
 	panic("implement me")
 }
 
-// D is the handler for the D API.
-func (c *cA) D(ctx context.Context, req *v1.DReq) (res *v1.DRes, err error) {
+// Bye is the handler for the Bye API.
+func (c *HelloV1) Bye(ctx context.Context, req *v1.ByeReq) (res *v1.ByeRes, err error) {
 	// TODO: Implement the business logic here.
 	panic("implement me")
 }
