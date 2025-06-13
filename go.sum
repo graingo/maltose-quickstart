@@ -51,6 +51,8 @@ github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeN
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/graingo/maltose-quickstart v0.0.0-20250611085013-2bbc051d2a1f h1:pxpW08nxVfNivh4YcKzSmUMROkOL4Nc8jyfK7xRFXjE=
+github.com/graingo/maltose-quickstart v0.0.0-20250611085013-2bbc051d2a1f/go.mod h1:lBE8qHW9QYFcq4JWvLjQbVGIhbrtx7XYnUcWJ98syZk=
 github.com/graingo/mconv v0.1.2 h1:tCohLCxuV02dS0NbFt88VAnKD26QjZB6WTs6paU2rDM=
 github.com/graingo/mconv v0.1.2/go.mod h1:9Swk60TDpvEBLIDdlqPo7fDz1ci4YQwnNdd2S9T0+q4=
 github.com/hashicorp/hcl v1.0.0 h1:0Anlzjpi4vEasTeNFn2mLJgTSwt0+6sfsiTG8qcWGx4=
