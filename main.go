@@ -12,7 +12,7 @@ func main() {
 	httpSvr := cmd.HttpServer()
 
 	// run app
-	if err := m.AppRun(httpSvr); err != nil {
+	if err := m.NewApp(m.WithServer(httpSvr)).Run(); err != nil {
 		log.Fatalf("server run failed: %v", err)
 	}
 }

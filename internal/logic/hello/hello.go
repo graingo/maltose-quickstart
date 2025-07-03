@@ -21,8 +21,8 @@ func New() service.IHello {
 	return &sHello{}
 }
 
-func (s *sHello) Hello(ctx context.Context, req *model.HelloInput) (res *model.HelloOutput, err error) {
+func (s *sHello) Hello(ctx context.Context, input *model.HelloInput) (output *model.HelloOutput, err error) {
 	// TODO: Implement the business logic of Hello.
-	res = new(model.HelloOutput)
+	output = new(model.HelloOutput)
 	return
 }

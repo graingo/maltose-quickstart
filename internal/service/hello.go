@@ -11,7 +11,7 @@ import (
 
 type IHello interface {
 	// TODO: Define your service interface methods here.
-	Hello(context.Context, *model.HelloInput) (*model.HelloOutput, error)
+	Hello(ctx context.Context, req *model.HelloInput) (res *model.HelloOutput, err error)
 }
 
 var localHello IHello
