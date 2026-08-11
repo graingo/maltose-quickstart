@@ -8,11 +8,10 @@ import (
 )
 
 func main() {
-	// init http server
-	httpSvr := cmd.HttpServer()
+	// Build the HTTP server before handing its lifecycle to the application.
+	httpServer := cmd.HTTPServer()
 
-	// run app
-	if err := m.NewApp(m.WithServer(httpSvr)).Run(); err != nil {
+	if err := m.NewApp(m.WithServer(httpServer)).Run(); err != nil {
 		log.Fatalf("server run failed: %v", err)
 	}
 }

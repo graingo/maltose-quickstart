@@ -10,14 +10,13 @@ import (
 )
 
 type IHello interface {
-	// TODO: Define your service interface methods here.
+	// Hello builds a greeting for the supplied name.
 	Hello(ctx context.Context, req *model.HelloInput) (res *model.HelloOutput, err error)
 }
 
 var localHello IHello
 
-// Hello returns the registered implementation of IHello.
-// It panics if no implementation is registered.
+// Hello returns the registered IHello implementation.
 func Hello() IHello {
 	if localHello == nil {
 		panic("implement not found for interface IHello, forgot register?")
@@ -25,7 +24,7 @@ func Hello() IHello {
 	return localHello
 }
 
-// RegisterHello registers an implementation for the IHello interface.
+// RegisterHello registers an IHello implementation.
 func RegisterHello(i IHello) {
 	localHello = i
 }
