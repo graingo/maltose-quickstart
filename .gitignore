@@ -1,27 +1,21 @@
-.buildpath
-.hgignore.swp
-.project
-.orig
-.swp
-.idea/
-.settings/
-.vscode/
-vendor/
-pkg/
-bin/
-**/.DS_Store
-.test/
-cmd/gf/main
-cmd/gf/gf
-temp/
-example/log
+# Go build and test output
+/bin/
+/vendor/
+coverage.out
+*.test
 go.work
 go.work.sum
-.env
-!cmd/gf/go.work
-.windsurfrules
 
-# Ignore for docs
-node_modules
-.docusaurus
-output
+# Local configuration and runtime data
+.env
+.env.*
+!.env.example
+/logs/
+/temp/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo

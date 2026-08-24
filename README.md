@@ -1,80 +1,121 @@
-# Maltose 快速开始模板
+# Maltose Quickstart
 
-基于 Maltose 框架的标准项目结构模板
+`maltose-quickstart` 是 Maltose 的官方项目模板，提供一个无需外部服务、克隆后即可运行的 HTTP API 示例。
+
+## 环境要求
+
+- Go 1.25 或更高版本
+- Maltose CLI（通过 CLI 创建项目时需要）
+
+```bash
+go install github.com/graingo/maltose/cmd/maltose@latest
+```
+
+## 创建项目
+
+推荐通过 CLI 创建项目，并显式设置正式 Module Path：
+
+```bash
+maltose new hello-maltose --module github.com/acme/hello-maltose
+cd hello-maltose
+go run .
+```
+
+也可以直接克隆本仓库：
+
+```bash
+git clone https://github.com/graingo/maltose-quickstart.git
+cd maltose-quickstart
+go run .
+```
+
+服务默认监听 `http://127.0.0.1:8081`。
+
+## 调用示例
+
+```bash
+curl 'http://127.0.0.1:8081/api/v1/hello?name=Maltose'
+```
+
+响应使用 Maltose 标准响应结构：
+
+```json
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "name": "Hello, Maltose!"
+  }
+}
+```
+
+模板提供以下入口：
+
+| 方法 | 路径 | 说明 |
+| --- | --- | --- |
+| GET | `/health` | 健康检查 |
+| GET | `/api/v1/hello?name=Maltose` | 查询参数绑定与业务调用 |
+| POST | `/api/v1/bye` | JSON 请求绑定 |
+| POST | `/api/v2/bye` | API 版本路由 |
+| GET | `/swagger` | Swagger UI |
+| GET | `/api.json` | OpenAPI 文档 |
+
+POST 请求示例：
+
+```bash
+curl -X POST 'http://127.0.0.1:8081/api/v2/bye' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Maltose"}'
+```
 
 ## 项目结构
 
-```
-maltose-quickstart/
-├── api/            # API 定义和请求/响应结构
-│   └── v1/         # API 版本
-├── cmd/            # 应用程序入口
-│   ├── server.go   # 服务启动
-│   └── config.go   # (可选) 配置加载及钩子(Hook)函数
-├── config/         # 配置文件
-├── internal/       # 内部代码，不对外暴露
-│   ├── controller/ # 控制器，处理请求和响应
-│   ├── service/    # 服务接口定义
-│   ├── logic/      # 业务逻辑实现
-│   ├── dao/        # 数据访问对象，处理数据库操作
-│   ├── provider/   # 封装对第三方服务的调用（如微服务、SaaS API）
-│   └── model/      # 模型定义
-│       ├── entity/ # 实体定义，映射数据库表结构
-│       └── do/     # (可选) 数据对象，用于承载复杂查询结果
-├── utility/        # 工具函数
-└── main.go         # 主入口文件
+```text
+.
+├── api/hello/              # API 契约，按业务模块与版本组织
+│   ├── v1/
+│   └── v2/
+├── cmd/                    # Server 装配与路由注册
+├── config/config.yaml      # 应用配置
+├── internal/
+│   ├── controller/         # HTTP 请求适配
+│   ├── logic/              # Service 接口实现与业务编排
+│   ├── model/              # 内部输入输出模型
+│   ├── service/            # 业务能力接口
+│   ├── dao/                # 可选：数据库访问
+│   └── provider/           # 可选：外部服务封装
+├── utility/                # 可选：项目通用工具
+└── main.go                 # 应用生命周期入口
 ```
 
-## 代码分层
+请求处理流程为：
 
-本项目遵循清晰的分层架构，各层职责如下：
+```text
+Router → Controller → Service/Logic → DAO 或 Provider
+```
 
-### 表现层（API 和 Controller）
+`main.go` 使用 `m.App` 管理 HTTP Server 的生命周期，并注入同一个 Logger 记录启动和关闭过程。业务项目增加数据库、Redis、文件 Logger 或可观测性 Provider 后，应通过 `m.WithCloser` 注册这些资源。
 
-- **API 层 (`api/`)**: 定义请求和响应的数据结构，包含路由元数据
-- **控制器层 (`internal/controller/`)**: 处理 HTTP 请求，参数验证，调用 Service 层，返回响应
-
-### 业务层（Service）
-
-- **服务层 (`internal/service/`)**: 定义业务逻辑的接口 (`interface`)。
-- **逻辑层 (`internal/logic/`)**: 业务逻辑的具体实现层。它实现了 `Service` 层定义的接口，并负责编排 `DAO` 和 `Provider` 来完成业务。
-
-### 数据与外部服务层（DAO, Model, Provider）
-
-- **DAO 层 (`internal/dao/`)**: 封装对本项目数据库的访问逻辑。
-- **Provider 层 (`internal/provider/`)**: 封装对所有外部服务（其他微服务、第三方 API）的客户端调用。
-- **模型层 (`internal/model/`)**:
-  - **实体 (`entity/`)**: 与数据库表结构一一对应，由工具生成，不应手动修改。
-  - **数据对象 (`do/`)**: (可选) 手动创建，用于 `DAO` 层承载自定义的复杂查询结果。
-
-### 基础设施层
-
-- **入口 (`cmd/`)**: 负责应用的启动、路由注册和配置加载。
-- **工具 (`utility/`)**: 通用工具函数和辅助功能
-- **配置 (`config/`)**: 应用配置文件
-
-## 数据流
-
-1. **请求** → **Router** → **Controller**
-2. **Controller** → **Service/Logic**
-3. **Service/Logic** → **DAO** (访问数据库) 或 **Provider** (调用外部服务)
-4. **DAO** → **数据库**
-5. **Provider** → **外部 API(微服务等)**
-6. **响应** 按相反方向返回
-
-## 开发指南
-
-1. 定义 API 数据结构 (`api/v1/*.go`)
-2. 在 `internal/service/` 中定义业务接口
-3. 如需调用外部服务，在 `internal/provider/` 中实现封装
-4. 实现 Controller 处理请求 (`internal/controller/*.go`)
-5. 在 `internal/logic/` 中实现业务逻辑，按需调用 DAO 或 Provider
-6. 实现 DAO 处理数据访问 (`internal/dao/*.go`)
-7. 定义 Entity 和 (可选的) DO 数据模型 (`internal/model/*/*.go`)
-8. 注册路由 (`cmd/route.go`)
-
-## 启动项目
+## 开发与验证
 
 ```bash
-go run main.go
+go test -race ./...
+go vet ./...
+go build ./...
 ```
+
+修改 `api/` 下的接口定义后，可以使用 Maltose CLI 生成对应骨架：
+
+```bash
+maltose gen service
+```
+
+模板依赖固定在 `go.mod` 中。升级 Maltose 后应执行完整验证：
+
+```bash
+go get github.com/graingo/maltose@latest
+go mod tidy
+go test -race ./...
+```
+
+完整文档见 [Maltose Documentation](https://graingo.github.io/maltose-docs/)。
