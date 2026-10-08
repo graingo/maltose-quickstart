@@ -5,7 +5,7 @@ go 1.25.0
 toolchain go1.25.13
 
 require (
-	github.com/graingo/maltose v0.4.0
+	github.com/graingo/maltose v0.5.0
 	github.com/stretchr/testify v1.11.1
 )
 

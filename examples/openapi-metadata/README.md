@@ -1,6 +1,6 @@
 # 文档元数据示例
 
-此示例使用下一版本的框架和 CLI 新增的 `Extensions.Info/Server/Tag`。发布后一起升级框架依赖和 CLI，再按以下步骤接入。当前模板的运行依赖仍为已发布的 v0.4.0。
+此示例使用 Maltose v0.5.0 的 `Extensions.Info/Server/Tag`。模板依赖与 CLI 配套使用 v0.5.0，再按以下步骤接入。
 
 在项目根目录创建 `apidocs/configure.go`：
 
