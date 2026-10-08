@@ -1,0 +1,158 @@
+components:
+    schemas:
+        ByeRes_00ffe00f0911cfee9ba9339ef38e913178afc0c79658971dd12a5268c6724f7e:
+            properties:
+                name:
+                    description: 姓名
+                    type: string
+            required:
+                - name
+            type: object
+        ByeRes_705e772831fbe6ffd3505fc6cae3453014493b42da21788dba8d7dd03cffb223:
+            properties:
+                name:
+                    description: 姓名
+                    type: string
+            required:
+                - name
+            type: object
+        HelloRes_d683d23fec848f2fc7cb43797197030b88baed0959ce2de08de42835a8de28dd:
+            properties:
+                name:
+                    description: 姓名
+                    type: string
+            required:
+                - name
+            type: object
+    securitySchemes: {}
+info:
+    title: API
+    version: 1.0.0
+openapi: 3.1.0
+paths:
+    /api/v1/bye:
+        post:
+            description: ""
+            operationId: github.com/graingo/maltose-quickstart/api/hello/v1.Bye
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            additionalProperties: false
+                            properties:
+                                name:
+                                    description: 姓名
+                                    minLength: 1
+                                    not:
+                                        enum:
+                                            - null
+                                    type: string
+                            required:
+                                - name
+                            type: object
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    code:
+                                        enum:
+                                            - 0
+                                        type: integer
+                                    data:
+                                        $ref: '#/components/schemas/ByeRes_00ffe00f0911cfee9ba9339ef38e913178afc0c79658971dd12a5268c6724f7e'
+                                    message:
+                                        type: string
+                                required:
+                                    - code
+                                    - message
+                                    - data
+                                type: object
+                    description: OK
+            summary: 告别示例
+            tags:
+                - 公共服务
+    /api/v1/hello:
+        get:
+            description: ""
+            operationId: github.com/graingo/maltose-quickstart/api/hello/v1.Hello
+            parameters:
+                - in: query
+                  name: name
+                  required: true
+                  schema:
+                    description: 姓名
+                    minLength: 1
+                    not:
+                        enum:
+                            - null
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    code:
+                                        enum:
+                                            - 0
+                                        type: integer
+                                    data:
+                                        $ref: '#/components/schemas/HelloRes_d683d23fec848f2fc7cb43797197030b88baed0959ce2de08de42835a8de28dd'
+                                    message:
+                                        type: string
+                                required:
+                                    - code
+                                    - message
+                                    - data
+                                type: object
+                    description: OK
+            summary: 问候示例
+            tags:
+                - 公共服务
+    /api/v2/bye:
+        post:
+            description: ""
+            operationId: github.com/graingo/maltose-quickstart/api/hello/v2.Bye
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            additionalProperties: false
+                            properties:
+                                name:
+                                    description: 姓名
+                                    minLength: 1
+                                    not:
+                                        enum:
+                                            - null
+                                    type: string
+                            required:
+                                - name
+                            type: object
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    code:
+                                        enum:
+                                            - 0
+                                        type: integer
+                                    data:
+                                        $ref: '#/components/schemas/ByeRes_705e772831fbe6ffd3505fc6cae3453014493b42da21788dba8d7dd03cffb223'
+                                    message:
+                                        type: string
+                                required:
+                                    - code
+                                    - message
+                                    - data
+                                type: object
+                    description: OK
+            summary: 告别示例 V2
+            tags:
+                - 公共服务

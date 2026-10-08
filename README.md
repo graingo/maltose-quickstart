@@ -119,3 +119,22 @@ go test -race ./...
 ```
 
 完整文档见 [Maltose Documentation](https://graingo.github.io/maltose-docs/)。
+
+## API 契约与文档
+
+控制器的路径、状态、包装和字段来源由 `m.Meta` 与 Req/Res 声明。示例显式使用 `envelope:"maltose"`，查询字段使用 `query`。
+
+```bash
+maltose gen openapi -s api -o cmd/openapi.yaml --openapi-version 3.1.0
+maltose gen openapi -s api -o cmd/openapi.yaml --check
+```
+
+提交文档与 `cmd/openapi.yaml.manifest.json`。服务通过 embed 加载二者，启动时比较实际契约，`/api.json` 和 Swagger 使用加载的文档。修改模块路径后重新生成；`maltose new` 会自动完成这一步。
+
+模板使用 Maltose v0.4.0 的契约编译器，配套安装同版本 CLI：
+
+```bash
+go install github.com/graingo/maltose/cmd/maltose@v0.4.0
+```
+
+从 v0.3 升级时，先按 [API 契约迁移说明](https://graingo.github.io/maltose-docs/components/server/api-metadata.html) 调整 DTO，再重新生成并校验文档。
