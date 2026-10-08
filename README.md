@@ -138,3 +138,5 @@ go install github.com/graingo/maltose/cmd/maltose@v0.4.0
 ```
 
 从 v0.3 升级时，先按 [API 契约迁移说明](https://graingo.github.io/maltose-docs/components/server/api-metadata.html) 调整 DTO，再重新生成并校验文档。
+
+下一版本的文档元数据能力及接入步骤见 [文档元数据示例](examples/openapi-metadata/README.md)，包含标题、API 版本、联系人、服务器地址和标签说明。该示例需要配套升级框架与 CLI。
