@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "document_sha256": "d0fd4af0cca3530096dfeddc86d6b53db4a6aff0a6bf126e901a5c80b1823143",
+  "document_sha256": "bd0e514da1b10f03527fb98f9c341480277447c70c6698c4798bd92684f24e33",
   "operations": {
-    "GET /api/v1/hello": "21df7dcfcf90ba6d1cdd842ae7f6fd2d58d4ca63486c5b694cf6d2d382fe8056",
-    "POST /api/v1/bye": "52cd0b4e0fa08eb1367a9d02fb00d5789c881cdde5bdd85e45c5f82abcb67d64",
-    "POST /api/v2/bye": "38884903b698c0207eee263a9df10c20707f51183583a58fee5f94df0c4f816d"
+    "GET /api/v1/hello": "9db999f5cf1304c0a292c52b50c0ca9cdd9d8eaf8332974980331df72abb8aaa",
+    "POST /api/v1/bye": "32f64c5c6c1cbdc68084aa319f2042f39d250e39351e978f266ab75dacd0d1b0",
+    "POST /api/v2/bye": "b01cefaedd3cf547989a3e6e473d93ed3b999becaf3536d539dc6157a2fb8d64"
   }
 }

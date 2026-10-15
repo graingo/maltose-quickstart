@@ -10,7 +10,8 @@ type HelloReq struct {
 
 // HelloRes contains the greeting returned by the hello endpoint.
 type HelloRes struct {
-	Name string `json:"name" dc:"姓名"`
+	Name string   `json:"name" dc:"姓名"`
+	Tags []string `json:"tags" field:"required" dc:"标签，空集合返回空数组"`
 }
 
 // ByeReq contains the input for the goodbye endpoint.

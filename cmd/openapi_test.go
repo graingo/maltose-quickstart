@@ -19,4 +19,9 @@ func TestEmbeddedOpenAPIContract(t *testing.T) {
 	server.ServeHTTP(response, httptest.NewRequest("GET", "/api.json", nil))
 	require.Equal(t, 200, response.Code)
 	require.Contains(t, response.Body.String(), "openapi: 3.1.0")
+
+	response = httptest.NewRecorder()
+	server.ServeHTTP(response, httptest.NewRequest("GET", "/api/v1/hello?name=Maltose", nil))
+	require.Equal(t, 200, response.Code)
+	require.JSONEq(t, `{"code":0,"message":"OK","data":{"name":"Hello, Maltose!","tags":[]}}`, response.Body.String())
 }

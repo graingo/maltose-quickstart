@@ -17,7 +17,7 @@ func (c *HelloV1) Hello(ctx context.Context, req *v1.HelloReq) (res *v1.HelloRes
 	if err != nil {
 		return nil, err
 	}
-	return &v1.HelloRes{Name: output.Greeting}, nil
+	return &v1.HelloRes{Name: output.Greeting, Tags: []string{}}, nil
 }
 
 // Bye is the handler for the Bye API.

@@ -21,8 +21,14 @@ components:
                 name:
                     description: 姓名
                     type: string
+                tags:
+                    description: 标签，空集合返回空数组
+                    items:
+                        type: string
+                    type: array
             required:
                 - name
+                - tags
             type: object
     securitySchemes: {}
 info:

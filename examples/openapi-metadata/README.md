@@ -1,6 +1,6 @@
 # 文档元数据示例
 
-此示例使用 Maltose v0.5.0 的 `Extensions.Info/Server/Tag`。模板依赖与 CLI 配套使用 v0.5.0，再按以下步骤接入。
+此示例使用 Maltose v0.5.0 的 `Extensions.Info/Server/Tag`。模板依赖与 CLI 配套使用 v0.5.1，再按以下步骤接入。
 
 在项目根目录创建 `apidocs/configure.go`：
 
