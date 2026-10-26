@@ -132,14 +132,16 @@ maltose gen openapi -s api -o cmd/openapi.yaml --check
 
 提交文档与 `cmd/openapi.yaml.manifest.json`。服务通过 embed 加载二者，启动时比较实际契约，`/api.json` 和 Swagger 使用加载的文档。修改模块路径后重新生成；`maltose new` 会自动完成这一步。
 
-模板使用 Maltose v0.5.1 的契约编译器，配套安装同版本 CLI：
+模板使用 Maltose v0.5.2 的契约编译器，配套安装同版本 CLI：
 
 ```bash
-go install github.com/graingo/maltose/cmd/maltose@v0.5.1
+go install github.com/graingo/maltose/cmd/maltose@v0.5.2
 ```
 
 从 v0.3 升级时，先按 [API 契约迁移说明](https://graingo.github.io/maltose-docs/components/server/api-metadata.html) 调整 DTO，再重新生成并校验文档。
 
 v0.5.0 的文档元数据能力及接入步骤见 [文档元数据示例](examples/openapi-metadata/README.md)，包含标题、API 版本、联系人、服务器地址和标签说明。框架与 CLI 使用相同版本。
+
+v0.5.2 提供原始 HTTP 上传与下载契约，声明、资源生命周期和完整示例见 [原始 HTTP 流](https://graingo.github.io/maltose-docs/components/server/raw-stream)。模板继续演示 JSON 接口，按业务需要显式启用流模式。
 
 `HelloRes.Tags` 使用 `json:"tags" field:"required"`：字段必有、非 null，允许空数组。控制器返回 `[]string{}`，保证空结果编码为 `[]`。需要 null 的字段显式声明 `field:"required,nullable"`。v0.5.1 更新了响应契约指纹，升级后重新生成文档及 manifest；生成器采用应用依赖的框架版本，框架与 CLI 一起升级。
